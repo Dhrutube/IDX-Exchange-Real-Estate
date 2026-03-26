@@ -1,5 +1,6 @@
 raw/
 __pycache__/
+.DS_Store
 
 crmls_sold.py
 crmls_listed.py
