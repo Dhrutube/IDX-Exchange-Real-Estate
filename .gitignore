@@ -1,0 +1,7 @@
+raw/
+__pycache__/
+
+crmls_sold.py
+crmls_listed.py
+
+*.csv
