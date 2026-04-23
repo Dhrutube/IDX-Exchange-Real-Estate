@@ -17,8 +17,8 @@ for i in range(1, 2 + 1):
 
 dfListings = pd.concat(listings)
 print(f'Concatenated Listings Dataframe size: dfListings.shape')
-dfListings = dfListings[dfListings['PropertyType'] == 'Residential']
-print(f'After filtering for residential: {dfListings.shape}')
+# dfListings = dfListings[dfListings['PropertyType'] == 'Residential']
+# print(f'After filtering for residential: {dfListings.shape}')
 
 dfListings.to_csv('CRMLSListing.csv', index=False)
 
@@ -39,7 +39,7 @@ for i in range(1, 2 + 1):
 
 dfSold = pd.concat(sold)
 print(f'Concatenated Sold Dataframe size: dfSold.shape')
-dfSold = dfSold[dfSold['PropertyType'] == 'Residential']
-print(f'After filtering for residential: {dfSold.shape}')
+# dfSold = dfSold[dfSold['PropertyType'] == 'Residential']
+# print(f'After filtering for residential: {dfSold.shape}')
 
 dfSold.to_csv('CRMLSSold.csv', index=False)
