@@ -146,6 +146,14 @@ dfSold['ContractStatusChangeDate'] = pd.to_datetime(dfSold['ContractStatusChange
 dfSold['PurchaseContractDate'] = pd.to_datetime(dfSold['PurchaseContractDate'])
 dfSold['ListingContractDate'] = pd.to_datetime(dfSold['ListingContractDate'])
 
+'''
+Feature Engineering and Market Metrics
+'''
+dfSold['Price Ratio'] = dfSold['ClosePrice'] / dfSold['ListPrice']  # measures negotiation strength
+dfSold['Price Per Sq Ft'] = dfSold['ClosePrice'] / dfSold['LivingArea']  # normalizes price across sizes
+dfSold['Year'] = dfSold['CloseDate'].dt.year
+dfSold['Month'] = dfSold['CloseDate'].dt.month
+dfSold['YrMo'] = dfSold['CloseDate'].dt.to_period('M')
+
 # saving to new file
 dfSold.to_csv('filtered/CRMLSSold.csv', index=False)
-
