@@ -152,6 +152,16 @@ dfSold['Year'] = dfSold['CloseDate'].dt.year
 dfSold['Month'] = dfSold['CloseDate'].dt.month
 dfSold['YrMo'] = dfSold['CloseDate'].dt.to_period('M')
 
+'''
+Interquartile Range (IQR)
+'''
+Q1 = dfSold['ClosePrice'].quantile(0.25)
+Q3 = dfSold['ClosePrice'].quantile(0.75)
+IQR = Q3 - Q1
+lower = Q1 - 1.5 * IQR
+upper = Q3 + 1.5 * IQR
+dfSold = dfSold[(dfSold['ClosePrice'] >= lower) & (dfSold['ClosePrice'] <= upper)]
+
 # saving to new file
 dfListings.to_csv('filtered/featuresListings.csv', index=False)
 dfSold.to_csv('filtered/featuresSold.csv', index=False)
