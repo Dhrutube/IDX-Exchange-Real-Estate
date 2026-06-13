@@ -155,12 +155,20 @@ dfSold['YrMo'] = dfSold['CloseDate'].dt.to_period('M')
 '''
 Interquartile Range (IQR)
 '''
-Q1 = dfSold['ClosePrice'].quantile(0.25)
-Q3 = dfSold['ClosePrice'].quantile(0.75)
-IQR = Q3 - Q1
-lower = Q1 - 1.5 * IQR
-upper = Q3 + 1.5 * IQR
+Q1c = dfSold['ClosePrice'].quantile(0.25)
+Q3c = dfSold['ClosePrice'].quantile(0.75)
+IQR = Q3c - Q1c
+lower = Q1c - 1.5 * IQR
+upper = Q3c + 1.5 * IQR
 dfSold = dfSold[(dfSold['ClosePrice'] >= lower) & (dfSold['ClosePrice'] <= upper)]
+dfSold = dfSold[dfSold['Price Per Sq Ft'] != float('inf')]
+Q1ps = dfSold['Price Per Sq Ft'].quantile(0.25)
+Q3ps = dfSold['Price Per Sq Ft'].quantile(0.75)
+IQR = Q3ps - Q1ps
+lower = Q1ps - 1.5 * IQR
+upper = Q3ps + 1.5 * IQR
+dfSold = dfSold[(dfSold['Price Per Sq Ft'] >= lower) & (dfSold['Price Per Sq Ft'] <= upper)]
+dfSold = dfSold[(dfSold['DaysOnMarket'] >= 0) & (dfSold['DaysOnMarket'] < 10000)]
 
 # saving to new file
 dfListings.to_csv('filtered/featuresListings.csv', index=False)
